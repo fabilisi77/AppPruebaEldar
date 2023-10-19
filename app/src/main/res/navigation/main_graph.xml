@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/weatherFragment2"
-        android:name="com.example.eldarapp.WeatherFragment"
+        android:name="com.example.eldarapp.ui.weather.WeatherFragment"
         android:label="fragment_weather"
         tools:layout="@layout/fragment_weather" />
     <fragment
         android:id="@+id/notesFragment2"
-        android:name="com.example.eldarapp.NotesFragment"
+        android:name="com.example.eldarapp.ui.notes.NotesFragment"
         android:label="fragment_notes"
         tools:layout="@layout/fragment_notes" />
 </navigation>
