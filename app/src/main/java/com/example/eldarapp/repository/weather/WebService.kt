@@ -11,13 +11,13 @@ import retrofit2.http.Query
 interface WebService {
     @GET(Constants.ONE_CALL_PATH)
     suspend fun getWeatherForecastByCoordinates(
-        @Query(Constants.LATITUDE_PARAM) lat: String,
-        @Query(Constants.LONGITUDE_PARAM) lon: String,
-        @Query(Constants.APP_ID_PARAM) appId: String,
+        @Query(Constants.LATITUDE_PARAM) lat: Double,
+        @Query(Constants.LONGITUDE_PARAM) lon: Double,
+        @Query("appid") appid: String = Constants.APP_ID,
         @Query(Constants.EXCLUDE_PARAM) exclude: String,
         @Query(Constants.UNITS_PARAM) units: String,
         @Query(Constants.LANGUAGE_PARAM) lang: String
-    ) : WeatherForecastEntity
+    ): WeatherForecastEntity
 }
 
 object RetrofitClient {
