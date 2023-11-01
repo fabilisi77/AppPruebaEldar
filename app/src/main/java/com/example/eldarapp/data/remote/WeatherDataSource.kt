@@ -7,10 +7,12 @@ class WeatherDataSource(private val webService: WebService) {
     suspend fun getWeatherForecastByCoordinates(
         lat: Double,
         lon: Double,
+        appId: String,
         exclude: String,
         units: String,
         lang: String
+
     ): WeatherForecastEntity {
-        return webService.getWeatherForecastByCoordinates(lat,lon,exclude,units,lang,lang)
+        return webService.getWeatherForecastByCoordinates(lat,lon,appId,exclude,units,lang)
     }
 }

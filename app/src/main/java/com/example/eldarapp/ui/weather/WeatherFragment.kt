@@ -1,7 +1,6 @@
 package com.example.eldarapp.ui.weather
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,6 +13,7 @@ import com.example.eldarapp.presentation.weather.WeatherViewModel
 import com.example.eldarapp.presentation.weather.WeatherViewModelFactory
 import com.example.eldarapp.repository.weather.RetrofitClient
 import com.example.eldarapp.repository.weather.WeatherRepositoryImpl
+import com.example.eldarapp.ui.weather.adapter.WeatherAdapter
 
 class WeatherFragment : Fragment(R.layout.fragment_weather) {
     private lateinit var binding: FragmentWeatherBinding
@@ -24,32 +24,44 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             )
         )
     }
+    private lateinit var weatherAdapter: WeatherAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentWeatherBinding.bind(view)
+        weatherAdapter = WeatherAdapter()
+        binding.recyclerView.adapter = weatherAdapter
 
-        val lat = 19.4325
-        val lon = -99.1332
+
+        val lat = -34.888361284891644
+        val lon = -58.38974951629251
+        val appId = "863c032efd96262c09e978132bd179c6"
         val exclude = ""
         val units = "metric"
         val lang = "en"
 
-        viewModel.fetchWeatherCurrent(lat, lon, exclude, units, lang).observe(viewLifecycleOwner, Observer { result ->
-            when (result) {
-                is Result.Loading -> {
-                    Log.d("Livedata", "Loading...")
-                }
 
-                is Result.Success -> {
-                    Log.d("Livedata", "${result.data}")
-                }
+        viewModel.fetchWeatherCurrent(lat, lon, appId, exclude, units, lang)
+            .observe(viewLifecycleOwner, Observer { result ->
+                when (result) {
+                    is Result.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
 
-                is Result.Failure -> {
-                    Log.d("Error", "${result.exception}")
+                    }
+
+                    is Result.Success -> {
+                        binding.progressBar.visibility = View.GONE
+                        val data = result.data
+                        weatherAdapter.updateData(listOf(data))
+
+                    }
+
+                    is Result.Failure -> {
+                        binding.progressBar.visibility = View.GONE
+
+                    }
                 }
-            }
-        })
+            })
     }
 }
 

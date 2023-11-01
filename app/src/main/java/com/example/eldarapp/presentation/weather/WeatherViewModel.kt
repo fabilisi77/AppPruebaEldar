@@ -12,9 +12,11 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
     fun fetchWeatherCurrent(
         lat: Double,
         lon: Double,
+        appId: String,
         exclude: String,
         units: String,
         lang: String
+
     ) = liveData(Dispatchers.IO) {
         emit(Result.Loading())
         try {
@@ -23,9 +25,11 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
                     repo.getWeatherForecastByCoordinates(
                         lat,
                         lon,
+                        appId,
                         exclude,
                         units,
                         lang
+
                     )
                 )
             )

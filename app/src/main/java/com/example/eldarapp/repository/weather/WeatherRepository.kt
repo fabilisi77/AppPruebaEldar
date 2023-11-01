@@ -6,8 +6,10 @@ interface WeatherRepository {
     suspend fun getWeatherForecastByCoordinates(
         lat: Double,
         lon: Double,
+        appId: String,
         exclude: String,
         units: String,
         lang: String
+
     ): WeatherForecastEntity
 }

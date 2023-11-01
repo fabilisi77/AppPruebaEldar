@@ -13,7 +13,7 @@ interface WebService {
     suspend fun getWeatherForecastByCoordinates(
         @Query(Constants.LATITUDE_PARAM) lat: Double,
         @Query(Constants.LONGITUDE_PARAM) lon: Double,
-        @Query("appid") appid: String = Constants.APP_ID,
+        @Query(Constants.APP_ID_PARAM) appId: String,
         @Query(Constants.EXCLUDE_PARAM) exclude: String,
         @Query(Constants.UNITS_PARAM) units: String,
         @Query(Constants.LANGUAGE_PARAM) lang: String
