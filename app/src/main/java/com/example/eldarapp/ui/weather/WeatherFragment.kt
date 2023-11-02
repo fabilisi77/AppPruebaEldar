@@ -14,6 +14,7 @@ import com.example.eldarapp.presentation.weather.WeatherViewModelFactory
 import com.example.eldarapp.repository.weather.RetrofitClient
 import com.example.eldarapp.repository.weather.WeatherRepositoryImpl
 import com.example.eldarapp.ui.weather.adapter.WeatherAdapter
+import com.example.eldarapp.utils.Constants
 
 class WeatherFragment : Fragment(R.layout.fragment_weather) {
     private lateinit var binding: FragmentWeatherBinding
@@ -33,9 +34,9 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         binding.recyclerView.adapter = weatherAdapter
 
 
-        val lat = -34.888361284891644
-        val lon = -58.38974951629251
-        val appId = "863c032efd96262c09e978132bd179c6"
+        val lat = -34.91722
+        val lon = -58.38694
+        val appId = Constants.API_KEY
         val exclude = ""
         val units = "metric"
         val lang = "en"

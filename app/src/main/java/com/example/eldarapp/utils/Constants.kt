@@ -9,4 +9,6 @@ object Constants {
     const val EXCLUDE_PARAM = "exclude"
     const val UNITS_PARAM = "units"
     const val LANGUAGE_PARAM = "lang"
+    const val API_KEY = "863c032efd96262c09e978132bd179c6"
+    const val URL_IMAGE = "https://openweathermap.org/img/wn/"
 }
