@@ -1,6 +1,6 @@
 package com.example.eldarapp.repository.weather
 
-import com.example.eldarapp.data.model.weather.WeatherForecastEntity
+import com.example.eldarapp.data.model.weather.WeatherForecast
 import com.example.eldarapp.utils.Constants
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
@@ -17,7 +17,7 @@ interface WebService {
         @Query(Constants.EXCLUDE_PARAM) exclude: String,
         @Query(Constants.UNITS_PARAM) units: String,
         @Query(Constants.LANGUAGE_PARAM) lang: String
-    ): WeatherForecastEntity
+    ): WeatherForecast
 }
 
 object RetrofitClient {

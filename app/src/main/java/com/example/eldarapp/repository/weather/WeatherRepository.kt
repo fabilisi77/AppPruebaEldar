@@ -1,6 +1,6 @@
 package com.example.eldarapp.repository.weather
 
-import com.example.eldarapp.data.model.weather.WeatherForecastEntity
+import com.example.eldarapp.data.model.weather.WeatherForecast
 
 interface WeatherRepository {
     suspend fun getWeatherForecastByCoordinates(
@@ -11,5 +11,5 @@ interface WeatherRepository {
         units: String,
         lang: String
 
-    ): WeatherForecastEntity
+    ): WeatherForecast
 }

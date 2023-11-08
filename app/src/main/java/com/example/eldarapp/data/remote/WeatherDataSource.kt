@@ -1,6 +1,6 @@
 package com.example.eldarapp.data.remote
 
-import com.example.eldarapp.data.model.weather.WeatherForecastEntity
+import com.example.eldarapp.data.model.weather.WeatherForecast
 import com.example.eldarapp.repository.weather.WebService
 
 class WeatherDataSource(private val webService: WebService) {
@@ -12,7 +12,7 @@ class WeatherDataSource(private val webService: WebService) {
         units: String,
         lang: String
 
-    ): WeatherForecastEntity {
+    ): WeatherForecast {
         return webService.getWeatherForecastByCoordinates(lat,lon,appId,exclude,units,lang)
     }
 }

@@ -1,6 +1,6 @@
 package com.example.eldarapp.repository.weather
 
-import com.example.eldarapp.data.model.weather.WeatherForecastEntity
+import com.example.eldarapp.data.model.weather.WeatherForecast
 import com.example.eldarapp.data.remote.WeatherDataSource
 
 class WeatherRepositoryImpl(private val dataSource: WeatherDataSource) : WeatherRepository {
@@ -12,7 +12,7 @@ class WeatherRepositoryImpl(private val dataSource: WeatherDataSource) : Weather
         units: String,
         lang: String
 
-    ): WeatherForecastEntity {
+    ): WeatherForecast {
 
         return dataSource.getWeatherForecastByCoordinates(lat, lon, appId, exclude, units, lang)
     }
