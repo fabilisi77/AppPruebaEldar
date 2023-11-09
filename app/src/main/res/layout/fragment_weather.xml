@@ -46,6 +46,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck"
         tools:text="TimeZone" />
 
     <TextView
@@ -59,7 +60,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTimeZone"
-        tools:text="10/09/1986" />
+        tools:text="10/09/1986"
+        tools:ignore="VisualLintOverlap" />
 
 
     <TextView
@@ -72,6 +74,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTimeZone"
+        tools:ignore="TextContrastCheck"
         tools:text="32°F" />
 
     <TextView
@@ -79,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:textColor="@color/accent"
+        android:textColor="#424242"
         android:textSize="15sp"
         app:layout_constraintEnd_toStartOf="@id/tvTimeZone"
         app:layout_constraintStart_toStartOf="parent"
@@ -90,7 +93,7 @@
         android:id="@+id/Humidity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/accent"
+        android:textColor="#424242"
         app:layout_constraintStart_toStartOf="@id/dt"
         app:layout_constraintTop_toBottomOf="@id/dt"
         tools:text="Humidity: 65%" />
@@ -100,7 +103,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:textColor="@color/accent"
+        android:textColor="#424242"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/tvTimeZone"
         app:layout_constraintTop_toBottomOf="@id/Temp"
@@ -110,7 +113,7 @@
         android:id="@+id/Description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/accent"
+        android:textColor="#424242"
         app:layout_constraintEnd_toEndOf="@id/Main"
         app:layout_constraintTop_toBottomOf="@id/Main"
         tools:text="Few clouds" />
@@ -122,16 +125,17 @@
         app:layout_constraintBottom_toBottomOf="@id/Humidity"
         app:layout_constraintEnd_toStartOf="@id/Description"
         app:layout_constraintStart_toEndOf="@id/Humidity"
-        app:layout_constraintTop_toBottomOf="@id/Temp" />
+        app:layout_constraintTop_toBottomOf="@id/Temp"
+        tools:ignore="ImageContrastCheck"
+        android:importantForAccessibility="no" />
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hourly Forecast"
+        android:text="@string/hourly_forecast"
         android:textColor="@color/accent"
         android:textSize="20sp"
-        android:textStyle="bold"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"

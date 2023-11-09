@@ -3,8 +3,10 @@ package com.example.eldarapp.ui.weather.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.eldarapp.R
 import com.example.eldarapp.core.BaseViewHolder
 import com.example.eldarapp.data.model.weather.Forecast
 import com.example.eldarapp.databinding.ItemWeatherBinding
@@ -29,15 +31,18 @@ class WeatherAdapter(private var weatherList: List<Forecast> = listOf()) :
         when (holder) {
             is WeatherViewHolder -> holder.bind(item)
         }
+
     }
 
-    private inner class WeatherViewHolder(val binding: ItemWeatherBinding, val context: Context) :
+    private inner class WeatherViewHolder(private val binding: ItemWeatherBinding, context: Context) :
         BaseViewHolder<Forecast>(binding.root) {
 
 
         override fun bind(item: Forecast) {
-            Glide.with(binding.root).load("${Constants.URL_IMAGE}${item.weather[0].icon}.png").into(binding.iconHourly)
-            binding.tempHourly.text = "${Utils.formatTemp(item.temp)}°C"
+            Glide.with(binding.root).load("${Constants.URL_IMAGE}${item.weather[0].icon}.png")
+                .into(binding.iconHourly)
+            binding.tempHourly.text =
+                binding.root.context.getString(R.string.tempHourly, item.temp.toInt())
             binding.DtHourly.text = Utils.formatDt(item.dt)
             binding.DateHourly.text = Utils.formatDate(item.dt)
 
@@ -46,8 +51,11 @@ class WeatherAdapter(private var weatherList: List<Forecast> = listOf()) :
     }
 
     fun setData(newData: List<Forecast>) {
+        val diffCallback = WeatherDiffCallback(weatherList, newData)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
         weatherList = newData
-        notifyDataSetChanged()
+        diffResult.dispatchUpdatesTo(this)
 
     }
+
 }

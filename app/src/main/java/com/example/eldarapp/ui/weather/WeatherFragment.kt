@@ -17,6 +17,7 @@ import com.example.eldarapp.repository.weather.WeatherRepositoryImpl
 import com.example.eldarapp.ui.weather.adapter.WeatherAdapter
 import com.example.eldarapp.utils.Constants
 import com.example.eldarapp.utils.Utils
+import com.example.eldarapp.utils.WeatherConfig
 
 class WeatherFragment : Fragment(R.layout.fragment_weather) {
     private lateinit var binding: FragmentWeatherBinding
@@ -36,12 +37,12 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         binding.recyclerView.adapter = weatherAdapter
 
 
-        val lat = -34.91722
-        val lon = -58.38694
-        val appId = Constants.API_KEY
-        val exclude = ""
-        val units = "metric"
-        val lang = "en"
+        val lat = WeatherConfig.LATITUDE
+        val lon = WeatherConfig.LONGITUDE
+        val appId = WeatherConfig.API_KEY
+        val exclude = WeatherConfig.EXCLUDE
+        val units = WeatherConfig.UNITS
+        val lang = WeatherConfig.LANG
 
 
         viewModel.fetchWeatherCurrent(lat, lon, appId, exclude, units, lang)
@@ -65,9 +66,9 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
 
                         binding.tvTimeZone.text = Utils.formatTimeZone(result.data.timezone)
                         binding.date.text = Utils.formatDate(result.data.current.dt)
-                        binding.Temp.text = "${Utils.formatTemp(result.data.current.temp)}°C"
-                        binding.dt.text = "Hour: ${Utils.formatDt(result.data.current.dt)}"
-                        binding.Humidity.text = "Humidity: ${result.data.current.humidity}%"
+                        binding.Temp.text = getString(R.string.temperature_format, Utils.formatTemp(result.data.current.temp).toInt())
+                        binding.dt.text = getString(R.string.hour_format, Utils.formatDt(result.data.current.dt))
+                        binding.Humidity.text = getString(R.string.humidity_format, result.data.current.humidity)
                         binding.Main.text = result.data.current.weather[0].main
                         binding.Description.text = result.data.current.weather[0].description
                     }

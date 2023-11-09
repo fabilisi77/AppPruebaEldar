@@ -19,9 +19,10 @@
 
     <ImageView
         android:id="@+id/icon_hourly"
-        android:src="@drawable/ic_launcher_background"
         android:layout_width="50dp"
-        android:layout_height="50dp"/>
+        android:layout_height="50dp"
+        android:src="@drawable/ic_launcher_background"
+        tools:ignore="ContentDescription,ImageContrastCheck" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/Date_hourly"
