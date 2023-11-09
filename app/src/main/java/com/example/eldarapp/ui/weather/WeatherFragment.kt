@@ -59,7 +59,8 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
                             .load("${Constants.URL_IMAGE}${result.data.current.weather[0].icon}.png")
                             .into(binding.icon)
                         val weatherList = result.data.hourly
-                        weatherAdapter.updateData(weatherList)
+                        weatherAdapter.setData(weatherList)
+                        binding.title.visibility = View.VISIBLE
 
 
                         binding.tvTimeZone.text = Utils.formatTimeZone(result.data.timezone)

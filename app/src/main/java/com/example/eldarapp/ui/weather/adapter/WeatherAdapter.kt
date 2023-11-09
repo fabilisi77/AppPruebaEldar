@@ -4,13 +4,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.eldarapp.core.BaseViewHolder
 import com.example.eldarapp.data.model.weather.Forecast
-import com.example.eldarapp.data.model.weather.WeatherForecast
 import com.example.eldarapp.databinding.ItemWeatherBinding
+import com.example.eldarapp.utils.Constants
 import com.example.eldarapp.utils.Utils
 
-class WeatherAdapter(private val weatherList: List<Forecast> = listOf()) :
+class WeatherAdapter(private var weatherList: List<Forecast> = listOf()) :
     RecyclerView.Adapter<BaseViewHolder<Forecast>>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Forecast> {
@@ -35,19 +36,18 @@ class WeatherAdapter(private val weatherList: List<Forecast> = listOf()) :
 
 
         override fun bind(item: Forecast) {
-            binding.tvMainHourly.text = item.weather[0].main
-            binding.tvDescriptionHourly.text = item.weather[0].description
-            binding.tvTempHourly.text = "${Utils.formatTemp(item.temp)}°C"
-            binding.tvHumidityHourly.text = "Humidity: ${item.humidity}%"
-            binding.tvDtHourly.text = "Hour: ${Utils.formatDt(item.dt)}"
+            Glide.with(binding.root).load("${Constants.URL_IMAGE}${item.weather[0].icon}.png").into(binding.iconHourly)
+            binding.tempHourly.text = "${Utils.formatTemp(item.temp)}°C"
+            binding.DtHourly.text = Utils.formatDt(item.dt)
+            binding.DateHourly.text = Utils.formatDate(item.dt)
 
 
         }
     }
 
-    fun updateData(newData: List<Forecast>) {
-        hourlyForecasts.clear()
-        hourlyForecasts.addAll(newData)
+    fun setData(newData: List<Forecast>) {
+        weatherList = newData
         notifyDataSetChanged()
+
     }
 }
