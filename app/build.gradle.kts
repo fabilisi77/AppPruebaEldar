@@ -48,6 +48,7 @@ dependencies {
     val retrofitVersion = "2.9.0"
     val glideVersion ="4.11.0"
     val viewmodelVersion ="2.2.0"
+    val room_version = "2.5.0"
 
     //NavComponent
     implementation("androidx.navigation:navigation-fragment-ktx:$navaVersion")
@@ -66,6 +67,12 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:$viewmodelVersion")
     //livedata
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:$viewmodelVersion")
+
+    //room
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+
 
 
 
